@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "twofish", "twofish\twofish.csproj", "{DC49C4AA-10C2-4A5A-A539-770800539481}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2FB68C23-7100-466C-B65D-DC59F5001690} = {2FB68C23-7100-466C-B65D-DC59F5001690}
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC} = {60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwofishSharp", "TwofishSharp\TwofishSharp.csproj", "{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TwofishCpp", "TwofishCpp\TwofishCpp.vcxproj", "{2FB68C23-7100-466C-B65D-DC59F5001690}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DC49C4AA-10C2-4A5A-A539-770800539481}.Release|Win32.ActiveCfg = Release|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{60C578FD-94BB-4911-ADEC-AF3BA22DBAFC}.Release|Win32.ActiveCfg = Release|Any CPU
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Debug|Win32.Build.0 = Debug|Win32
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Release|Any CPU.ActiveCfg = Release|Win32
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Release|Win32.ActiveCfg = Release|Win32
+		{2FB68C23-7100-466C-B65D-DC59F5001690}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
