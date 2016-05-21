@@ -5,6 +5,7 @@
 
 #include "stdafx.h"
 #include "aes.h"
+#include <time.h>
 
 #define BUFFER_SIZE 1024
 
@@ -20,11 +21,12 @@ int main(int argc, char* argv[])
 	char keyMaterial[64]="00000000000000000000000000000000";
 	char* input_file_name = "input.txt";
 	char* output_file_name = "output.txt";
-
+	int buffer_size = BUFFER_SIZE;
 	for (int i = 1; i < argc; i++)
 	{
 		if (strcmp(argv[i], "--encrypt") == 0) dir = DIR_ENCRYPT ;
-		else if (strcmp(argv[i], "--decrypt") == 0) dir = DIR_DECRYPT ;
+		else if (strcmp(argv[i], "--decrypt") == 0) dir = DIR_DECRYPT;
+		else if (strcmp(argv[i], "--buffer") == 0) buffer_size = atoi(argv[++i])*16;
 		else if (strcmp(argv[i], "--mode") == 0)
 		{
 			i++;
@@ -39,16 +41,17 @@ int main(int argc, char* argv[])
 	}
 	cipherInit(&ci, mode, IV);
 	makeKey(&ki, dir, keySize, keyMaterial);
-	BYTE inputBuffer[BUFFER_SIZE];
-	BYTE outputBuffer[BUFFER_SIZE];
+	BYTE *inputBuffer = (BYTE*)malloc(buffer_size);
+	BYTE *outputBuffer = (BYTE*)malloc(buffer_size);
 	FILE* fi = fopen(input_file_name, "rb");
 	FILE* fo = fopen(output_file_name, "wb");
 
-	if (dir == DIR_ENCRYPT) printf("Encrypting...");
-	if (dir == DIR_DECRYPT) printf("Decrypting...");
-	for (int length = fread(inputBuffer, 1, sizeof(inputBuffer), fi);
+	clock_t t = clock();
+	long total = 0;
+
+	for (int length = fread(inputBuffer, 1, buffer_size, fi);
 	     length > 0;
-	     length = fread(inputBuffer, 1, sizeof(inputBuffer), fi))
+		 length = fread(inputBuffer, 1, buffer_size, fi))
 	{
 		for (int i = length&((BLOCK_SIZE / 8) - 1); i > 0 && i < (BLOCK_SIZE / 8); i++)
 			inputBuffer[length++] = '\0';
@@ -74,6 +77,13 @@ int main(int argc, char* argv[])
 			if (dir == DIR_DECRYPT) blockDecrypt(&ci, &ki, inputBuffer, length * 8, outputBuffer);
 		}
 		fwrite(outputBuffer, 1, length, fo);
+		total += length;
 	}
+	t = clock() - t;
+	printf("%d %lf\n", buffer_size, 1000.0*t / CLOCKS_PER_SEC / total);
+
+	free(inputBuffer);
+	free(outputBuffer);
+
 	return 0;
 }

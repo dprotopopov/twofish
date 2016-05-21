@@ -44,8 +44,13 @@ namespace twofish
             sb.AppendFormat(" --iv {0}", textBoxIV.Text);
             sb.AppendFormat(" --key {0}", textBoxKey.Text);
 
+            sb.AppendFormat(" --buffer {0}", numericUpDown1.Value);
+
             sb.AppendFormat(" --input \"{0}\"", inputBox.Text);
             sb.AppendFormat(" --output \"{0}\"", outputBox.Text);
+
+            if (radioButtonSharp.Checked) sb.Append(" >> TwofishSharp.log");
+            if (radioButtonCpp.Checked) sb.Append(" >> TwofishCpp.log");
 
             commandBox.Text = sb.ToString();
         }
@@ -66,6 +71,8 @@ namespace twofish
             process.WaitForExit();
 
             DateTime end = DateTime.Now;
+            var dt = end - start;
+            MessageBox.Show(string.Format("Time {0} sec.", dt.TotalSeconds));
         }
     }
 }

@@ -33,11 +33,12 @@ namespace TwofishSharp
             var iv = ParseHex("00000000000000000000000000000000");
             var inputFilename = "input.txt";
             var outputFilename = "output.txt";
-
+            var bufferSize = 1024;
             for (var i = 0; i < args.Length; i++)
                 if (args[i] == "--keysize") keysize = Convert.ToInt16(args[++i]);
                 else if (args[i] == "--encrypt") dir = TwofishManagedTransformMode.Encrypt;
                 else if (args[i] == "--decrypt") dir = TwofishManagedTransformMode.Decrypt;
+                else if (args[i] == "--buffer") bufferSize = Convert.ToInt32(args[++i])*16;
                 else if (args[i] == "--mode")
                 {
                     i++;
@@ -49,8 +50,8 @@ namespace TwofishSharp
                 else if (args[i] == "--key") key = ParseHex(args[++i]);
                 else if (args[i] == "--iv") iv = ParseHex(args[++i]);
 
-            if (dir == TwofishManagedTransformMode.Encrypt) Console.WriteLine("Encrypting...");
-            if (dir == TwofishManagedTransformMode.Decrypt) Console.WriteLine("Decrypting...");
+            //if (dir == TwofishManagedTransformMode.Encrypt) Console.WriteLine("Encrypting...");
+            //if (dir == TwofishManagedTransformMode.Decrypt) Console.WriteLine("Decrypting...");
 
             using (var twofish = new TwofishManaged
             {
@@ -62,9 +63,11 @@ namespace TwofishSharp
             using (var reader = new BinaryReader(File.Open(inputFilename, FileMode.Open)))
             using (var writer = new BinaryWriter(File.Open(outputFilename, FileMode.Create)))
             {
-                for (var inputBuffer = reader.ReadBytes(1024);
+                DateTime t = DateTime.Now;
+                long total = 0;
+                for (var inputBuffer = reader.ReadBytes(bufferSize);
                     inputBuffer.Length > 0;
-                    inputBuffer = reader.ReadBytes(1024))
+                    inputBuffer = reader.ReadBytes(bufferSize))
                 {
                     Array.Resize(ref inputBuffer, (inputBuffer.Length + 15) & ~15);
                     var outputBuffer = new byte[inputBuffer.Length];
@@ -80,7 +83,10 @@ namespace TwofishSharp
                         transform.TransformBlock(inputBuffer, 0, inputBuffer.Length, outputBuffer, 0);
                     }
                     writer.Write(outputBuffer);
+                    total += inputBuffer.Length;
                 }
+                var dt = DateTime.Now - t;
+                Console.WriteLine("{0} {1}", bufferSize, (dt.TotalMilliseconds / total).ToString(CultureInfo.InvariantCulture));
             }
         }
     }

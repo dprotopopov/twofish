@@ -57,9 +57,12 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -167,7 +170,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(105, 370);
+            this.label5.Location = new System.Drawing.Point(105, 422);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 20);
             this.label5.TabIndex = 10;
@@ -176,7 +179,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(93, 410);
+            this.label6.Location = new System.Drawing.Point(93, 462);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 20);
             this.label6.TabIndex = 11;
@@ -184,7 +187,7 @@
             // 
             // inputBox
             // 
-            this.inputBox.Location = new System.Drawing.Point(243, 370);
+            this.inputBox.Location = new System.Drawing.Point(243, 422);
             this.inputBox.Name = "inputBox";
             this.inputBox.Size = new System.Drawing.Size(496, 26);
             this.inputBox.TabIndex = 12;
@@ -193,7 +196,7 @@
             // 
             // outputBox
             // 
-            this.outputBox.Location = new System.Drawing.Point(243, 410);
+            this.outputBox.Location = new System.Drawing.Point(243, 462);
             this.outputBox.Name = "outputBox";
             this.outputBox.Size = new System.Drawing.Size(496, 26);
             this.outputBox.TabIndex = 13;
@@ -202,7 +205,7 @@
             // 
             // buttonInput
             // 
-            this.buttonInput.Location = new System.Drawing.Point(773, 366);
+            this.buttonInput.Location = new System.Drawing.Point(773, 418);
             this.buttonInput.Name = "buttonInput";
             this.buttonInput.Size = new System.Drawing.Size(94, 34);
             this.buttonInput.TabIndex = 14;
@@ -212,7 +215,7 @@
             // 
             // buttonOutput
             // 
-            this.buttonOutput.Location = new System.Drawing.Point(773, 402);
+            this.buttonOutput.Location = new System.Drawing.Point(773, 454);
             this.buttonOutput.Name = "buttonOutput";
             this.buttonOutput.Size = new System.Drawing.Size(94, 34);
             this.buttonOutput.TabIndex = 15;
@@ -226,7 +229,7 @@
             // 
             // commandBox
             // 
-            this.commandBox.Location = new System.Drawing.Point(243, 456);
+            this.commandBox.Location = new System.Drawing.Point(243, 508);
             this.commandBox.Multiline = true;
             this.commandBox.Name = "commandBox";
             this.commandBox.ReadOnly = true;
@@ -235,7 +238,7 @@
             // 
             // buttonRun
             // 
-            this.buttonRun.Location = new System.Drawing.Point(773, 456);
+            this.buttonRun.Location = new System.Drawing.Point(773, 508);
             this.buttonRun.Name = "buttonRun";
             this.buttonRun.Size = new System.Drawing.Size(94, 33);
             this.buttonRun.TabIndex = 17;
@@ -331,7 +334,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(24, 370);
+            this.button1.Location = new System.Drawing.Point(24, 422);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(63, 66);
             this.button1.TabIndex = 26;
@@ -339,11 +342,45 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(52, 372);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(168, 20);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Buffer (16 bytes block)";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(243, 370);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 26);
+            this.numericUpDown1.TabIndex = 28;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.UpdateCommandBox);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 669);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboBox1);
@@ -374,6 +411,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,6 +448,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 
