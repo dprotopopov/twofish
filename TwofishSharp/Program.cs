@@ -38,7 +38,7 @@ namespace TwofishSharp
                 if (args[i] == "--keysize") keysize = Convert.ToInt16(args[++i]);
                 else if (args[i] == "--encrypt") dir = TwofishManagedTransformMode.Encrypt;
                 else if (args[i] == "--decrypt") dir = TwofishManagedTransformMode.Decrypt;
-                else if (args[i] == "--buffer") bufferSize = Convert.ToInt32(args[++i])*16;
+                else if (args[i] == "--buffer") bufferSize = Convert.ToInt32(args[++i]);
                 else if (args[i] == "--mode")
                 {
                     i++;
@@ -63,20 +63,18 @@ namespace TwofishSharp
             using (var reader = new BinaryReader(File.Open(inputFilename, FileMode.Open)))
             using (var writer = new BinaryWriter(File.Open(outputFilename, FileMode.Create)))
             {
-                DateTime t = DateTime.Now;
+                var t = DateTime.Now;
                 long total = 0;
-                for (var inputBuffer = reader.ReadBytes(bufferSize);
+                for (var inputBuffer = reader.ReadBytes(bufferSize*16);
                     inputBuffer.Length > 0;
-                    inputBuffer = reader.ReadBytes(bufferSize))
+                    inputBuffer = reader.ReadBytes(bufferSize*16))
                 {
                     Array.Resize(ref inputBuffer, (inputBuffer.Length + 15) & ~15);
                     var outputBuffer = new byte[inputBuffer.Length];
                     if (mode == CipherMode.ECB)
                     {
-                        Parallel.For(0, inputBuffer.Length/16, i =>
-                        {
-                            transform.TransformBlock(inputBuffer, 16*i, 16, outputBuffer, 16*i);
-                        });
+                        Parallel.For(0, inputBuffer.Length/16,
+                            i => { transform.TransformBlock(inputBuffer, 16*i, 16, outputBuffer, 16*i); });
                     }
                     if (mode == CipherMode.CBC)
                     {
@@ -86,7 +84,8 @@ namespace TwofishSharp
                     total += inputBuffer.Length;
                 }
                 var dt = DateTime.Now - t;
-                Console.WriteLine("{0} {1}", bufferSize, (dt.TotalMilliseconds / total).ToString(CultureInfo.InvariantCulture));
+                Console.WriteLine("{0} {1}", bufferSize,
+                    (16*dt.TotalMilliseconds/total).ToString(CultureInfo.InvariantCulture));
             }
         }
     }

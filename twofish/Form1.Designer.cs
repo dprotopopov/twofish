@@ -207,7 +207,7 @@
             // 
             this.buttonInput.Location = new System.Drawing.Point(773, 418);
             this.buttonInput.Name = "buttonInput";
-            this.buttonInput.Size = new System.Drawing.Size(94, 34);
+            this.buttonInput.Size = new System.Drawing.Size(104, 34);
             this.buttonInput.TabIndex = 14;
             this.buttonInput.Text = "Browse...";
             this.buttonInput.UseVisualStyleBackColor = true;
@@ -217,7 +217,7 @@
             // 
             this.buttonOutput.Location = new System.Drawing.Point(773, 454);
             this.buttonOutput.Name = "buttonOutput";
-            this.buttonOutput.Size = new System.Drawing.Size(94, 34);
+            this.buttonOutput.Size = new System.Drawing.Size(104, 34);
             this.buttonOutput.TabIndex = 15;
             this.buttonOutput.Text = "Browse...";
             this.buttonOutput.UseVisualStyleBackColor = true;
@@ -240,7 +240,7 @@
             // 
             this.buttonRun.Location = new System.Drawing.Point(773, 508);
             this.buttonRun.Name = "buttonRun";
-            this.buttonRun.Size = new System.Drawing.Size(94, 33);
+            this.buttonRun.Size = new System.Drawing.Size(104, 33);
             this.buttonRun.TabIndex = 17;
             this.buttonRun.Text = "Run";
             this.buttonRun.UseVisualStyleBackColor = true;
